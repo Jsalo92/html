@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalles del Pedido</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2, h3 {
+        color: #333;
+    }
+    p {
+        margin: 10px 0;
+    }
+    strong {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Detalles del Pedido</h2>
+        <p><strong>Comanda:</strong> <span id="comanda"></span></p>
+        <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+        <h3>Resumen del Pedido:</h3>
+        <div id="resumen"></div>
+    </div>
+
+    <script>
+        // Función para obtener parámetros de la URL
+        function obtenerParametro(nombre) {
+            nombre = nombre.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + nombre + '=([^&#]*)');
+            var resultados = regex.exec(location.search);
+            return resultados === null ? '' : decodeURIComponent(resultados[1].replace(/\+/g, ' '));
+        }
+
+        // Obtener los parámetros de la URL
+        var comanda = obtenerParametro('COMANDA');
+        var fecha = obtenerParametro('FECHA');
+        var resumen = obtenerParametro('resumen');
+
+        // Convertir la cadena resumen en un array separado por saltos de línea
+        var lineasResumen = resumen.split('\n');
+
+        // Escribir la información en el documento HTML
+        window.onload = function() {
+            document.getElementById('comanda').innerHTML = comanda;
+            document.getElementById('fecha').innerHTML = fecha;
+            // Mostrar cada línea del resumen en un párrafo separado
+            lineasResumen.forEach(function(linea) {
+                var parrafo = document.createElement('p');
+                parrafo.innerHTML = linea;
+                document.getElementById('resumen').appendChild(parrafo);
+            });
+        };
+    </script>
+</body>
+</html>
