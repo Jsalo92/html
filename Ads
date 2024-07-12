@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuncios de AdMob</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        const adUnitID = "ca-pub-2242622128999240/6882396406";
+        function mostrarAnuncio() {
+            const adsContainer = document.getElementById("ads-container");
+            const ad = document.createElement("ins");
+            ad.className = "adsbygoogle";
+            ad.style.display = "block";
+            ad.style.textAlign = "center";
+            ad.setAttribute("data-ad-client", "ca-pub-2242622128999240");
+            ad.setAttribute("data-ad-slot", adUnitID);
+            ad.setAttribute("data-ad-format", "auto");
+            adsContainer.appendChild(ad);
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+        document.addEventListener("DOMContentLoaded", mostrarAnuncio);
+    </script>
+</head>
+<body>
+    <div id="ads-container"></div>
+</body>
+</html>
